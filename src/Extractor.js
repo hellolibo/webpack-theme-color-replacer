@@ -81,11 +81,20 @@ module.exports = function Extractor(options) {
     this.getRules = function (cssCode) {
         var rules = cssCode.split(';')
         var ret = []
-        rules.forEach(rule => {
-            if (this.testCssCode(rule)) {
-                ret.push(rule.replace(SpaceReg, ' '))
+        if(options.all){
+            if (rules.findIndex(rule => this.testCssCode(rule)) !== -1) {
+                rules.forEach(rule => {
+                    ret.push(rule.replace(SpaceReg, ' '))
+                })
             }
-        })
+        } else {
+            rules.forEach(rule => {
+                if (this.testCssCode(rule)) {
+                    ret.push(rule.replace(SpaceReg, ' '))
+                }
+            })
+        }
+        
         return ret
     }
 

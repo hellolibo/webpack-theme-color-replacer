@@ -11,6 +11,7 @@ module.exports = class Handler {
             fileName: 'css/theme-colors-[contenthash:8].css',
             matchColors: [],
             isJsUgly: !(process.env.NODE_ENV === 'development' || process.argv.find(arg => arg.match(/\bdev/))),
+            all: false
         }, options);
         this.assetsExtractor = new AssetsExtractor(this.options)
     }
